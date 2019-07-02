@@ -29,18 +29,9 @@ DOXYFILE_ENCODING      = UTF-8
 
 
 
-/*! \mainpage 
- *
- * \section Overview
- *
- * <a href="/TrueRandom_8hpp_source.html">Header file</a> that includes fuctions to utilize the "True Random Number Generator" peripheral of the Atmel ATSAM3X8E (Arduino Due)
- * 
- * main.cpp demonstrates some usage.
- *
- * See TrueRandom.hpp
- */
 
-
+INPUT += README.md
+USE_MDFILE_AS_MAINPAGE = README.md
 
 
 
@@ -1000,7 +991,7 @@ FILTER_SOURCE_PATTERNS =
 # (index.html). This can be useful if you have a project on for instance GitHub
 # and want to reuse the introduction page also for the doxygen output.
 
-USE_MDFILE_AS_MAINPAGE = 
+
 
 #---------------------------------------------------------------------------
 # Configuration options related to source browsing
