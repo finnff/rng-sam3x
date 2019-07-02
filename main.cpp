@@ -2,6 +2,10 @@
 #include "TrueRandom.hpp"
 #include "hwlib.hpp" //No need to include sam3.h if using hwlib.
 
+/** Demonstrates 3 different ways the functions can be used to generate differnt numbers
+ * @return None.
+ */
+
 int main() {
   for (;;) {
     hwlib::cout << "random 32 Bit unsigned int: " << hwlib::endl;

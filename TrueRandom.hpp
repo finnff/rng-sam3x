@@ -4,16 +4,9 @@
 #include "sam3.h"
 // #include "hwlib.hpp" //No need to include sam3.h if using hwlib.
 
-/** @brief trueRandom()
-
-    Header file with functions to generate random numbers on Atmel SAM3 Cortex
-   -M3 type devices. The generated 32-bit numbers pass NIST Special Publication
-   800-22 Tests and the Diehard Random Tests.
-
-    Also included is a function that formats this number into a certain range,
-   if no parameters are given, it will default to a range of 0 to 100.
-    @author finnff
-    @date June 2019
+/** trueRandom(); checks if trng is already enabled, if not it will enable on the TRNG peripheral, disabling the
+   interupt register and enabling the TRNG chip with the "RNG" key
+    @return Return a random 32 Bit integer.
     */
 
 uint_fast32_t trueRandom() {
@@ -22,8 +15,9 @@ uint_fast32_t trueRandom() {
     PMC->PMC_PCER1 =
         (0x01 << (41 - 32));     /**< enables clock on peripheral 41(TRNG) */
     TRNG->TRNG_IDR = 0xFFFFFFFF; /**< disable interupt register */
-    TRNG->TRNG_CR = TRNG_CR_KEY(0x524e47) |
-                    TRNG_CR_ENABLE; /**< enables TRNG key with "RNG" key */
+    TRNG->TRNG_CR =
+        TRNG_CR_KEY(0x524e47) |
+        TRNG_CR_ENABLE; /**< enables TRNG key with "RNG" key (in hex)*/
     enable = true;
   }
 
@@ -38,7 +32,7 @@ uint_fast32_t trueRandom() {
    the range is 0-100.
     @param lo Minimum/Low value of given range
     @param hi Maximum/High value of given range
-    @return value random value bewtween Minimum and Maximum
+    @return random value bewtween Minimum and Maximum
     */
 
 u_int32_t RandomRange(const uint_fast32_t &lo = 0,
@@ -48,5 +42,4 @@ u_int32_t RandomRange(const uint_fast32_t &lo = 0,
   return rand + lo;
 }
 
-
-#endif//TRUERANDOM_HPP
+#endif // TRUERANDOM_HPP
